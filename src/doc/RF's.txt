@@ -1,0 +1,11 @@
+RF01 = O sistema deve permitir o usuário a cadastrar as seguintes informações dos produtos: preço, quantidade, código, nome, marca, categorias, estoque mínimo;
+RF01.1 = O sistema deve permitir que o usuário cadastrar, alterar, excluir e pesquisar as seguintes informações de categorias de produto: código, nome;
+RF01.2 = O sistema deve permitir que o usuário pesquisar um produto pelo nome, código de barras, por categorias, por marcas;
+RF02 = O sistema deve permitir a emissão de vendas informando o cliente, e os produtos. O sistema deve permitir o usuário a pesquisar o produto digitando o 
+código de barra ou utilizando o leitor de código de barras ou pesquisar o produto pelo nome, após selecionar o produto informar a quantidade vendida.
+RF02.1 = O sistema deve permitir que o usuário informe o tipo de pagamento ao finalizar a venda: Cartão (Debito ou Crédito), cheque , a vista ou a prazo
+(nota promissor ou crediário próprio);
+RF03 = O sistema deve informar ao final do dia uma tabela com quais produtos foram vendidos, seus códigos, a quantidade e o valor total das vendas.
+RF03.1 = O sistema deve realizar ao final do dia uma relação entre a quantidade de produtos vendidos durante o dia e a quantidade dos mesmos produtos 
+disponíveis no estoque. Caso o nível de produtos no estoque estiver baixo o sistema deve avisar o usuário. 
+RF03.2 = O sistema deve emitir um relatório no final do dia informando os produtos que estão com estoque abaixo do estoque mínimo. 
