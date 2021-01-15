@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,6 @@ public class ClienteCons extends javax.swing.JDialog {
     public ClienteCons(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        centralizarTela();
         formatarColumnTable();
     }
 
@@ -211,6 +209,7 @@ public class ClienteCons extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
@@ -289,11 +288,6 @@ public class ClienteCons extends javax.swing.JDialog {
     private ClienteDao clienteDao;
     private ClienteFrm clienteFrm;
     
-    private void centralizarTela() {
-        Dimension tamanhoTela = getToolkit().getScreenSize();
-        Dimension tamanho = getSize();
-        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
-    }
     
     private void formatarColumnTable() {
         FontMetrics fm = jTblCliente.getFontMetrics(jTblCliente.getFont());

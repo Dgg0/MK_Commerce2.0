@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.awt.Dimension;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -257,6 +256,7 @@ public class ProdutoFrm extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNovoActionPerformed
@@ -357,7 +357,7 @@ public class ProdutoFrm extends javax.swing.JDialog {
         if (marcaDao == null) {
             marcaDao = new MarcaDao();
         }
-        List<Marca> listaMarca = marcaDao.pesquisar("");
+        List<Marca> listaMarca = marcaDao.selectNome("");
         comboBoxMarca = (DefaultComboBoxModel)jComboMarca.getModel();
         comboBoxMarca.removeAllElements();
         for (int linha = 0; linha < listaMarca.size(); linha++) {
@@ -376,7 +376,7 @@ public class ProdutoFrm extends javax.swing.JDialog {
         if (categoriaDao == null) {
             categoriaDao = new CategoriaDao();
         }
-        List<Categoria> listaCategoria = categoriaDao.pesquisar("");
+        List<Categoria> listaCategoria = categoriaDao.selectNome("");
         comboBoxCategoria = (DefaultComboBoxModel)jComboCategoria.getModel();
         comboBoxCategoria.removeAllElements();
         for (int linha = 0; linha < listaCategoria.size(); linha++) {
@@ -390,14 +390,7 @@ public class ProdutoFrm extends javax.swing.JDialog {
         return (Categoria)jComboCategoria.getSelectedItem();
     }
     
-    private void centralizarTela() {
-        Dimension tamanhoTela = getToolkit().getScreenSize();
-        Dimension tamanho = getSize();
-        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
-    }
-    
     private void iniciarForm() {
-        this.centralizarTela();
         produto = new Produto();
         this.carregarComboBoxCategoria();
         this.carregarComboBoxMarca();

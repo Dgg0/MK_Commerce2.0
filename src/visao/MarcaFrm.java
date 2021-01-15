@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import modelo.dao.MarcaDao;
 import modelo.entidade.Marca;
@@ -187,6 +186,7 @@ public class MarcaFrm extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTxfIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxfIdActionPerformed
@@ -277,14 +277,7 @@ public class MarcaFrm extends javax.swing.JDialog {
         this.mostrarDadosFrom();
     }
     
-    private void centralizarTela() {
-        Dimension tamanhoTela = getToolkit().getScreenSize();
-        Dimension tamanho = getSize();
-        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
-    }
-    
     private void iniciarFrom() {
-        this.centralizarTela();
         marca = new Marca();
         this.limparDadosFrom();
         jBtnNovo.setEnabled(false);

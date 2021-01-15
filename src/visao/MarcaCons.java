@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,6 @@ public class MarcaCons extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.formatarColumnTable();
-        this.centralizarTela();
     }
 
     /**
@@ -94,14 +92,14 @@ public class MarcaCons extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jBtnPesquisar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnPesquisar)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtParametroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JComboPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 11, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtParametroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JComboPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTblMarca.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -210,7 +208,8 @@ public class MarcaCons extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 479, 326);
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTxtParametroPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtParametroPesquisaActionPerformed
@@ -292,11 +291,6 @@ public class MarcaCons extends javax.swing.JDialog {
     private MarcaDao marcaDao;
     private MarcaFrm marcaFrm;
     
-    private void centralizarTela() {
-        Dimension tamanhoTela = getToolkit().getScreenSize();
-        Dimension tamanho = getSize();
-        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
-    }
     
     private void formatarColumnTable() {
         FontMetrics fm = jTblMarca.getFontMetrics(jTblMarca.getFont());
@@ -328,9 +322,9 @@ public class MarcaCons extends javax.swing.JDialog {
         this.listaMarca = new ArrayList<>();
         
         if (param[0].equals("NOME")) {
-            this.listaMarca = (this.marcaDao.pesquisar(param[1]));
+            this.listaMarca = (this.marcaDao.selectNome(param[1]));
         } else {
-            this.listaMarca.add(this.marcaDao.pesquisar(Integer.parseInt(param[1])));
+            this.listaMarca.add(this.marcaDao.selectId(Integer.parseInt(param[1])));
         }
         this.setListaMarca(this.listaMarca);
     }

@@ -14,7 +14,6 @@ import modelo.dao.VendaDao;
 import modelo.entidade.Cliente;
 import modelo.entidade.ItemVenda;
 import modelo.entidade.Venda;
-import visao.BuscarClienteCons;
 import visao.TableModel.ItemVendaColumnModel;
 import visao.TableModel.ItemVendaTableModel;
 import visao.TableModel.VendaColumnModel;
@@ -75,6 +74,7 @@ public class VendaCons extends javax.swing.JDialog {
         });
 
         jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/from/pesquisar.png"))); // NOI18N
+        jBtnPesquisar.setToolTipText("Pesquisar");
         jBtnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnPesquisarActionPerformed(evt);

@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,6 @@ public class ProdutoCons extends javax.swing.JDialog {
     public ProdutoCons(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        centralizarTela();
         formatarTableModel();
         jComboMarca.setEnabled(false);
         jComboCategoria.setEnabled(false);
@@ -273,6 +271,7 @@ public class ProdutoCons extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -378,12 +377,6 @@ public class ProdutoCons extends javax.swing.JDialog {
     private CategoriaDao categoriaDao;
     private ProdutoFrm produtoFrm;
     
-    private void centralizarTela() {
-        Dimension tamanhoTela = getToolkit().getScreenSize();
-        Dimension tamanho = getSize();
-        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
-    }
-    
     private DefaultComboBoxModel comboBoxMarca;
     private DefaultComboBoxModel comboBoxCategoria;
     
@@ -391,7 +384,7 @@ public class ProdutoCons extends javax.swing.JDialog {
         if (marcaDao == null) {
             marcaDao = new MarcaDao();
         }
-        List<Marca> listaMarca = marcaDao.pesquisar("");
+        List<Marca> listaMarca = marcaDao.selectNome("");
         comboBoxMarca = (DefaultComboBoxModel)jComboMarca.getModel();
         comboBoxMarca.removeAllElements();
         for (int linha = 0; linha < listaMarca.size(); linha++) {
@@ -405,7 +398,7 @@ public class ProdutoCons extends javax.swing.JDialog {
         if (categoriaDao == null) {
             categoriaDao = new CategoriaDao();
         }
-        List<Categoria> listaCategoria = categoriaDao.pesquisar("");
+        List<Categoria> listaCategoria = categoriaDao.selectNome("");
         comboBoxCategoria = (DefaultComboBoxModel)jComboCategoria.getModel();
         comboBoxCategoria.removeAllElements();
         for (int linha = 0; linha < listaCategoria.size(); linha++) {
@@ -449,10 +442,10 @@ public class ProdutoCons extends javax.swing.JDialog {
         } else if (param[0].equals("CÓDIGO")) {
             listaProduto.add(produtoDao.selectCod(Integer.parseInt(param[1])));
         } else  if (param[0].equals("MARCA")) {
-            Marca marca = marcaDao.buscarMarca(jComboMarca.getSelectedItem().toString());
+            Marca marca = marcaDao.select(jComboMarca.getSelectedItem().toString());
             listaProduto =  produtoDao.selectMarca(marca.getId());
         } else if (param[0].equals("CATEGORIA")) {
-            Categoria categoria = categoriaDao.buscarCategoria(jComboCategoria.getSelectedItem().toString());
+            Categoria categoria = categoriaDao.select(jComboCategoria.getSelectedItem().toString());
             listaProduto = produtoDao.selectCategoria(categoria.getId());
         } else {
             listaProduto.add(produtoDao.selectId(Integer.parseInt(param[1])));

@@ -69,7 +69,7 @@ public class MarcaDao {
         }
     }
     
-    public Marca pesquisar(long id) {
+    public Marca selectId(long id) {
         iniciarConexaoDB();
         Marca marca = null;
         String sql = "SELECT id, nome FROM marca WHERE id = ?";
@@ -89,7 +89,7 @@ public class MarcaDao {
         }
     }
     
-    public List<Marca> pesquisar(String nome) {
+    public List<Marca> selectNome(String nome) {
         iniciarConexaoDB();
         Marca marca; 
         List<Marca> lstMarca = new ArrayList();
@@ -111,23 +111,23 @@ public class MarcaDao {
         }
     }
     
-    public Marca buscarMarca(String nomeMarca) {
+    public Marca select(String nome) {
         iniciarConexaoDB();
-        Marca marca = null;
-        String sql = "SELECT id FROM marca WHERE nome = ?";
+        Marca marca = null; 
+        String sql = "SELECT id, nome FROM marca WHERE nome LIKE ?";
         try {
             PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, nomeMarca);
+            pstmt.setString(1, nome + "%");
             ResultSet resultado = pstmt.executeQuery();
             if (resultado.next()) {
                 marca = new Marca();
                 marca.setId(resultado.getInt("id"));
+                marca.setNome(resultado.getString("nome"));
             }
             return marca;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar marca: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao pesquisar marca por NOME: " + ex.getMessage());
             return null;
         }
     }
-    
 }

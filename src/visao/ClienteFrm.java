@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import modelo.dao.ClienteDao;
 import modelo.entidade.Cliente;
@@ -34,12 +33,6 @@ public class ClienteFrm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
-        jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -56,8 +49,6 @@ public class ClienteFrm extends javax.swing.JDialog {
         jBtnSalvar = new javax.swing.JButton();
         jBtnExcluir = new javax.swing.JButton();
         jBtnSair = new javax.swing.JButton();
-
-        jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -241,6 +232,7 @@ public class ClienteFrm extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTxfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxfNomeActionPerformed
@@ -306,15 +298,10 @@ public class ClienteFrm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JButton jBtnNovo;
     private javax.swing.JButton jBtnSair;
     private javax.swing.JButton jBtnSalvar;
-    private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JFormattedTextField jFtxfCpf;
     private javax.swing.JFormattedTextField jFtxfTelefone;
     private javax.swing.JLabel jLabel1;
@@ -324,7 +311,6 @@ public class ClienteFrm extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTxfEndereco;
     private javax.swing.JTextField jTxfId;
     private javax.swing.JTextField jTxfNome;
@@ -333,11 +319,6 @@ public class ClienteFrm extends javax.swing.JDialog {
     private Cliente cliente;
     private ClienteDao clienteDao;
     
-    private void centralizarTela() {
-        Dimension tamanhoTela = getToolkit().getScreenSize();
-        Dimension tamanho = getSize();
-        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
-    }
     
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
@@ -345,7 +326,6 @@ public class ClienteFrm extends javax.swing.JDialog {
     }
     
     private void iniciarFrom() {
-        this.centralizarTela();
         cliente = new Cliente();
         this.limparDadosFrom();
         jBtnNovo.setEnabled(false);
