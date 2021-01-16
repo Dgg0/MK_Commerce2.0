@@ -14,7 +14,6 @@ import modelo.dao.VendaDao;
 import modelo.entidade.Cliente;
 import modelo.entidade.ItemVenda;
 import modelo.entidade.Venda;
-import visao.BuscarClienteCons;
 import visao.TableModel.ItemVendaColumnModel;
 import visao.TableModel.ItemVendaTableModel;
 import visao.TableModel.VendaColumnModel;

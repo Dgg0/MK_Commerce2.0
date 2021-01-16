@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import modelo.dao.ClienteDao;
 import modelo.entidade.Cliente;
@@ -241,6 +240,7 @@ public class ClienteFrm extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTxfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxfNomeActionPerformed
@@ -333,19 +333,12 @@ public class ClienteFrm extends javax.swing.JDialog {
     private Cliente cliente;
     private ClienteDao clienteDao;
     
-    private void centralizarTela() {
-        Dimension tamanhoTela = getToolkit().getScreenSize();
-        Dimension tamanho = getSize();
-        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
-    }
-    
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
         this.mostrarDadosFrom();
     }
     
     private void iniciarFrom() {
-        this.centralizarTela();
         cliente = new Cliente();
         this.limparDadosFrom();
         jBtnNovo.setEnabled(false);

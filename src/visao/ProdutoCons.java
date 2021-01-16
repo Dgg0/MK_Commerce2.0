@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,6 @@ public class ProdutoCons extends javax.swing.JDialog {
     public ProdutoCons(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        centralizarTela();
         formatarTableModel();
         jComboMarca.setEnabled(false);
         jComboCategoria.setEnabled(false);
@@ -273,6 +271,7 @@ public class ProdutoCons extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -377,12 +376,6 @@ public class ProdutoCons extends javax.swing.JDialog {
     private MarcaDao marcaDao;
     private CategoriaDao categoriaDao;
     private ProdutoFrm produtoFrm;
-    
-    private void centralizarTela() {
-        Dimension tamanhoTela = getToolkit().getScreenSize();
-        Dimension tamanho = getSize();
-        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
-    }
     
     private DefaultComboBoxModel comboBoxMarca;
     private DefaultComboBoxModel comboBoxCategoria;

@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,6 @@ public class CategoriaCons extends javax.swing.JDialog {
     public CategoriaCons(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.centralizarTela();
     }
 
     /**
@@ -199,6 +197,7 @@ public class CategoriaCons extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -276,12 +275,6 @@ public class CategoriaCons extends javax.swing.JDialog {
     private List<Categoria> listaCategoria;
     private CategoriaFrm categoriaFrm;
     private CategoriaDao categoriaDao;
-    
-    private void centralizarTela() {
-        Dimension tamanhoTela = getToolkit().getScreenSize();
-        Dimension tamanho = getSize();
-        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
-    }
     
     private void formatarJTableCategoria() {
         FontMetrics fm = jTblCategoria.getFontMetrics(jTblCategoria.getFont());
