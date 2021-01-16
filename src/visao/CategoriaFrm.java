@@ -5,6 +5,7 @@
  */
 package visao;
 
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import modelo.dao.CategoriaDao;
 import modelo.entidade.Categoria;
@@ -172,7 +173,6 @@ public class CategoriaFrm extends javax.swing.JDialog {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNovoActionPerformed
@@ -250,6 +250,11 @@ public class CategoriaFrm extends javax.swing.JDialog {
     private Categoria categoria;
     private CategoriaDao categoriaDao;
     
+    private void centralizarTela() {
+        Dimension tamanhoTela = getToolkit().getScreenSize();
+        Dimension tamanho = getSize();
+        setLocation((tamanhoTela.width - tamanho.width)/ 2,250);
+    }
     
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
@@ -257,6 +262,7 @@ public class CategoriaFrm extends javax.swing.JDialog {
     }
     
     private void iniciarFrom() {
+        this.centralizarTela();
         categoria = new Categoria();
         jBtnNovo.setEnabled(false);
         jBtnSalvar.setEnabled(true);

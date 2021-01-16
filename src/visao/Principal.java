@@ -851,6 +851,7 @@ public class Principal extends javax.swing.JFrame {
     private VendaDao vendaDao;
     private ItemVenda itemVenda;
     private ItemVendaDao itemVendaDao;
+    private Produto produto;
     private ProdutoDao produtoDao;
     private MarcaDao marcaDao;
     private CategoriaDao categoriaDao;
@@ -867,7 +868,7 @@ public class Principal extends javax.swing.JFrame {
         if (marcaDao == null) {
             marcaDao = new MarcaDao();
         }
-        List<Marca> listaMarca = marcaDao.selectNome("");
+        List<Marca> listaMarca = marcaDao.pesquisar("");
         comboBoxMarca = (DefaultComboBoxModel) jComboParamMarca.getModel();
         comboBoxMarca.removeAllElements();
         for (int linha = 0; linha < listaMarca.size(); linha++) {
@@ -881,7 +882,7 @@ public class Principal extends javax.swing.JFrame {
         if (categoriaDao == null) {
             categoriaDao = new CategoriaDao();
         }
-        List<Categoria> listaCategoria = categoriaDao.selectNome("");
+        List<Categoria> listaCategoria = categoriaDao.pesquisar("");
         comboBoxCategoria = (DefaultComboBoxModel) jComboParamCategoria.getModel();
         comboBoxCategoria.removeAllElements();
         for (int linha = 0; linha < listaCategoria.size(); linha++) {
@@ -940,10 +941,10 @@ public class Principal extends javax.swing.JFrame {
         } else if (paramProduto[0].equals("NOME")) {
             listaProduto = produtoDao.selectNome(paramProduto[1]);
         } else if (paramProduto[0].equals("MARCA")) {
-            Marca marca = marcaDao.select(paramProduto[2]);
+            Marca marca = marcaDao.buscarMarca(paramProduto[2]);
             listaProduto = produtoDao.selectMarca(marca.getId());
         } else {
-            Categoria categoria = categoriaDao.select(paramProduto[3]);
+            Categoria categoria = categoriaDao.buscarCategoria(paramProduto[3]);
             listaProduto = produtoDao.selectCategoria(categoria.getId());
         }
         setListaProduto(listaProduto);
@@ -1040,7 +1041,7 @@ public class Principal extends javax.swing.JFrame {
         cliente = new Cliente();
         jTxfNomeCliente.setText("");
         jTxfCpfCliente.setText("");
-        jTxfValorTotalCompra.setText("");
+        jTxfValorTotalCompra.setText("0.00");
         jGpBtnTipoPagamento.clearSelection();
         listaVenda = new ArrayList<>();
         setListaVenda(listaVenda);

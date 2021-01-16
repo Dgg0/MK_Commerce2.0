@@ -69,7 +69,7 @@ public class CategoriaDao {
         }
     }
     
-    public Categoria selectId(long id) {
+    public Categoria pesquisar(long id) {
         iniciarConexaoDB();
         Categoria categoria = null;
         String sql = "SELECT id, nome FROM categoria WHERE id = ?";
@@ -89,7 +89,7 @@ public class CategoriaDao {
         }
     }
     
-    public List<Categoria> selectNome(String nome) {
+    public List<Categoria> pesquisar(String nome) {
         iniciarConexaoDB();
         Categoria categoria;
         List<Categoria> lstCategoria = new ArrayList();
@@ -111,22 +111,21 @@ public class CategoriaDao {
         }
     }
     
-    public Categoria select(String nome) {
+    public Categoria buscarCategoria(String nomeCategoria) {
         iniciarConexaoDB();
         Categoria categoria = null;
-        String sql = "SELECT id, nome FROM categoria WHERE nome LIKE ?";
+        String sql = "SELECT id FROM categoria WHERE nome = ?";
         try {
             PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, nome + "%");
+            pstmt.setString(1, nomeCategoria);
             ResultSet resultado = pstmt.executeQuery();
             if (resultado.next()) {
                 categoria = new Categoria();
                 categoria.setId(resultado.getInt("id"));
-                categoria.setNome(resultado.getString("nome"));
             }
             return categoria;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao pesquisar categoria por NOME: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar categoria: " + ex.getMessage());
             return null;
         }
     }

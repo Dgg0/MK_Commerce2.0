@@ -100,7 +100,7 @@ public class ProdutoDao {
         if (marcaDao == null) {
             marcaDao = new MarcaDao();
         }
-        return marcaDao.selectId(id);
+        return marcaDao.pesquisar(id);
     }
     
     private CategoriaDao categoriaDao;
@@ -108,7 +108,7 @@ public class ProdutoDao {
         if (categoriaDao == null) {
             categoriaDao = new CategoriaDao();
         }
-        return categoriaDao.selectId(id);
+        return categoriaDao.pesquisar(id);
     }
     
     public Produto selectId(int idProduto) {

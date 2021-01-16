@@ -29,10 +29,10 @@ public class ItemVendaCellRenderer extends DefaultTableCellRenderer{
         
         switch (row % 2) {
             case 0:
-                label.setBackground(fundoCorNormal);
+                label.setBackground(fundoCorZebrado);
                 break;
             case 1:
-                label.setBackground(fundoCorZebrado);
+                label.setBackground(fundoCorNormal);
                 break;
         }
         
