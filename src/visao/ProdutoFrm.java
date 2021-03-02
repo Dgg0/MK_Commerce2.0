@@ -63,7 +63,7 @@ public class ProdutoFrm extends javax.swing.JDialog {
         jBtnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Formuláro Produtto");
+        setTitle("Formulário Produto");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

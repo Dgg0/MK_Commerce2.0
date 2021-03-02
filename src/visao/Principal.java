@@ -44,10 +44,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        this.carregarComboBoxCategoria();
-        this.carregarComboBoxMarca();
-        this.jComboParamCategoria.setEnabled(false);
-        this.jComboParamMarca.setEnabled(false);
+        this.jBtnBuscar.setEnabled(false);
         this.jBtnAdicionarProduto.setEnabled(false);
         this.jBtnRemoverProduto.setEnabled(false);
         this.jBtnFinalizarCompra.setEnabled(false);
@@ -66,10 +63,6 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTxfPesquisarProduto = new javax.swing.JTextField();
         jComboParamProduto = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jComboParamMarca = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jComboParamCategoria = new javax.swing.JComboBox<>();
         jBtnPesquisar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -92,6 +85,7 @@ public class Principal extends javax.swing.JFrame {
         jTxfValorTotal = new javax.swing.JTextField();
         jBtnAdicionarProduto = new javax.swing.JButton();
         jSpnQuantidade = new javax.swing.JSpinner();
+        jBtnBuscar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -142,18 +136,6 @@ public class Principal extends javax.swing.JFrame {
                 jComboParamProdutoItemStateChanged(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Marca");
-
-        jComboParamMarca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboParamMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Categoria");
-
-        jComboParamCategoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboParamCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/from/pesquisar.png"))); // NOI18N
         jBtnPesquisar.setToolTipText("Pesquisar");
@@ -294,7 +276,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxfValorTotal)
+                .addComponent(jTxfValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnAdicionarProduto)
                 .addContainerGap())
@@ -324,6 +306,13 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jBtnBuscar.setText("...");
+        jBtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -331,24 +320,19 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboParamProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTxfPesquisarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboParamMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboParamCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBtnPesquisar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jComboParamProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTxfPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtnPesquisar))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,10 +343,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboParamProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTxfPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jComboParamMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboParamCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jBtnBuscar)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jBtnPesquisar)))
@@ -687,18 +668,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jComboParamProdutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboParamProdutoItemStateChanged
-        if (jComboParamProduto.getSelectedItem().toString().equals("Categoria")) {
-            jComboParamCategoria.setEnabled(true);
-            jComboParamMarca.setEnabled(false);
-            jTxfPesquisarProduto.setEnabled(false);
-        } else if (jComboParamProduto.getSelectedItem().toString().equals("Marca")) {
-            jComboParamCategoria.setEnabled(false);
-            jComboParamMarca.setEnabled(true);
-            jTxfPesquisarProduto.setEnabled(false);
+        if (jComboParamProduto.getSelectedItem().toString().equals("Categoria") || jComboParamProduto.getSelectedItem().toString().equals("Marca")) {
+            jTxfPesquisarProduto.setText("");
+            jTxfPesquisarProduto.setEditable(false);
+            jBtnBuscar.setEnabled(true);
         } else {
-            jComboParamCategoria.setEnabled(false);
-            jComboParamMarca.setEnabled(false);
-            jTxfPesquisarProduto.setEnabled(true);
+            jTxfPesquisarProduto.setText("");
+            jTxfPesquisarProduto.setEditable(true);
+            jBtnBuscar.setEnabled(false);
         }
     }//GEN-LAST:event_jComboParamProdutoItemStateChanged
 
@@ -747,9 +724,13 @@ public class Principal extends javax.swing.JFrame {
                 setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 new ChecarEstoqueCons(this, true).setVisible(true);
             } else {
-            System.exit(0);
+                System.exit(0);
             }
     }//GEN-LAST:event_formWindowClosing
+
+    private void jBtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBuscarActionPerformed
+        this.botaoBuscar();
+    }//GEN-LAST:event_jBtnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -788,21 +769,18 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAdicionarProduto;
+    private javax.swing.JButton jBtnBuscar;
     private javax.swing.JButton jBtnFinalizarCompra;
     private javax.swing.JButton jBtnPesquisar;
     private javax.swing.JButton jBtnRemoverProduto;
     private javax.swing.JButton jBtnSelecionarCliente;
-    private javax.swing.JComboBox<String> jComboParamCategoria;
-    private javax.swing.JComboBox<String> jComboParamMarca;
     private javax.swing.JComboBox<String> jComboParamProduto;
     private javax.swing.ButtonGroup jGpBtnTipoPagamento;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -858,7 +836,9 @@ public class Principal extends javax.swing.JFrame {
     private Produto produto;
     private ProdutoDao produtoDao;
     private MarcaDao marcaDao;
+    private Marca marca;
     private CategoriaDao categoriaDao;
+    private Categoria categoria;
     private Cliente cliente;
     private double valorTotalCompra = 0;
   
@@ -868,35 +848,23 @@ public class Principal extends javax.swing.JFrame {
     private DefaultComboBoxModel comboBoxMarca;
     private DefaultComboBoxModel comboBoxCategoria;
 
-    private void carregarComboBoxMarca() {
-        if (marcaDao == null) {
-            marcaDao = new MarcaDao();
+    
+    //Buscar Marca & Categoria
+    private void botaoBuscar() {
+        if(jComboParamProduto.getSelectedItem().equals("Marca")) {
+            BuscarMarcaCons buscarMarca = new BuscarMarcaCons(this, true);
+            buscarMarca.setVisible(true);
+            marca = buscarMarca.getMarca();
+            jTxfPesquisarProduto.setText(marca.getNome());
+        } else if(jComboParamProduto.getSelectedItem().equals("Categoria")) {
+            BuscarCategoriaCons buscarCategoria = new BuscarCategoriaCons(this, true);
+            buscarCategoria.setVisible(true);
+            categoria = buscarCategoria.getCategoria();
+            jTxfPesquisarProduto.setText(categoria.getNome());
         }
-        List<Marca> listaMarca = marcaDao.pesquisar("");
-        comboBoxMarca = (DefaultComboBoxModel) jComboParamMarca.getModel();
-        comboBoxMarca.removeAllElements();
-        for (int linha = 0; linha < listaMarca.size(); linha++) {
-            Marca marca = listaMarca.get(linha);
-            comboBoxMarca.addElement(marca);
-        }
-        jComboParamMarca.setModel(comboBoxMarca);
+        
     }
-
-    private void carregarComboBoxCategoria() {
-        if (categoriaDao == null) {
-            categoriaDao = new CategoriaDao();
-        }
-        List<Categoria> listaCategoria = categoriaDao.pesquisar("");
-        comboBoxCategoria = (DefaultComboBoxModel) jComboParamCategoria.getModel();
-        comboBoxCategoria.removeAllElements();
-        for (int linha = 0; linha < listaCategoria.size(); linha++) {
-            Categoria categoria = listaCategoria.get(linha);
-            comboBoxCategoria.addElement(categoria);
-        }
-        jComboParamCategoria.setModel(comboBoxCategoria);
- 
-    }
-
+    
     private void formatarColumnTableProduto() {
         FontMetrics fm = jTblBuscarProdutos.getFontMetrics(jTblBuscarProdutos.getFont());
         jTblBuscarProdutos.setColumnModel(new ProdutoColumnModel(fm));
@@ -925,12 +893,15 @@ public class Principal extends javax.swing.JFrame {
     }
 
     String paramProduto[] = new String[4];
-
     private void getParametroPesquisaProduto() {
         paramProduto[0] = jComboParamProduto.getSelectedItem().toString().toUpperCase();
         paramProduto[1] = jTxfPesquisarProduto.getText().toUpperCase();
-        paramProduto[2] = jComboParamMarca.getSelectedItem().toString().toUpperCase();
-        paramProduto[3] = jComboParamCategoria.getSelectedItem().toString().toUpperCase();
+        if(marca != null) {
+            paramProduto[2] = marca.getId().toString();
+        } else if(categoria != null) {
+            paramProduto[3] = categoria.getId().toString();
+        }
+        
     }
 
     private void botaoPesquisarProduto() {
@@ -939,17 +910,19 @@ public class Principal extends javax.swing.JFrame {
             produtoDao = new ProdutoDao();
         }
         List<Produto> listaProduto = new ArrayList<>();
-
-        if (paramProduto[0].equals("CÓDIGO")) {
-            listaProduto.add(produtoDao.selectCod(Integer.parseInt(paramProduto[1])));
-        } else if (paramProduto[0].equals("NOME")) {
-            listaProduto = produtoDao.selectNome(paramProduto[1]);
-        } else if (paramProduto[0].equals("MARCA")) {
-            Marca marca = marcaDao.buscarMarca(paramProduto[2]);
-            listaProduto = produtoDao.selectMarca(marca.getId());
-        } else {
-            Categoria categoria = categoriaDao.buscarCategoria(paramProduto[3]);
-            listaProduto = produtoDao.selectCategoria(categoria.getId());
+        
+        switch(paramProduto[0]){
+            case "CÓDIGO":
+                listaProduto.add(produtoDao.selectCod(Integer.parseInt(paramProduto[1])));
+                break;
+            case "NOME":
+                listaProduto = produtoDao.selectNome(paramProduto[1]);
+                break;
+            case "MARCA":
+                listaProduto = produtoDao.selectMarca(Integer.parseInt(paramProduto[2]));
+                break;
+            default:
+                listaProduto = produtoDao.selectCategoria(Integer.parseInt(paramProduto[3]));
         }
         setListaProduto(listaProduto);
     }
@@ -1030,8 +1003,7 @@ public class Principal extends javax.swing.JFrame {
     private void limparDadosTela() {
         jComboParamProduto.setSelectedIndex(1);
         jTxfPesquisarProduto.setText("");
-        carregarComboBoxCategoria();
-        carregarComboBoxMarca();
+        
         listaProduto = new ArrayList<>();
         setListaProduto(listaProduto);
         jTxfCodigo.setText("");
